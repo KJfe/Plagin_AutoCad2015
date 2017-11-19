@@ -30,7 +30,6 @@ namespace Model.Colour
             convert = Convert.ToString(argb.B, 16);
             hex += (convert.Length != 2) ? ("0" + convert) : (convert);
             
-
             //return ColorTranslator.ToHtml(argb);
             return hex;
         }

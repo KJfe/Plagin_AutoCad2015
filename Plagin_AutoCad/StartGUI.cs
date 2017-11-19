@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using Autodesk.AutoCAD.Runtime;
+﻿using Autodesk.AutoCAD.Runtime;
 using Plagin_AutoCad.View;
 using autoDSK = Autodesk.AutoCAD.ApplicationServices.Application;
 

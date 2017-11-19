@@ -209,7 +209,7 @@
                 Margin="34,22,35,26"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Fill="{Binding Path=ColorHEX, UpdateSourceTrigger=PropertyChanged}"
+                Fill="{Binding Path=ColorHex, UpdateSourceTrigger=PropertyChanged}"
                 RadiusX="4"
                 RadiusY="4"
                 Stroke="Black"
@@ -218,13 +218,13 @@
             <Label
                 Grid.Row="1"
                 VerticalAlignment="Bottom"
-                Content="Цвет в формате hex" />
+                Content="Цвет в формате HEX" />
             <TextBox
                 Grid.Row="2"
                 Width="80"
                 Margin="3"
                 HorizontalAlignment="Left"
-                Text="{Binding Path=ColorHEX, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                Text="{Binding Path=ColorHex, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
         </Grid>
 
     </Grid>

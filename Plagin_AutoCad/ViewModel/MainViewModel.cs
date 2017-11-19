@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.ComponentModel;
+using System.Windows.Input;
 
 namespace Plagin_AutoCad.ViewModel
 {
@@ -15,11 +16,43 @@ namespace Plagin_AutoCad.ViewModel
             ShowLayers = new ShowLayersViewModel();
            
             VisibleColorPicker = "Collapsed";
-
-            ClickCommandVisibleInColorPickerUC=new Command(arg =>
+            string selectLayer=null;
+            ClickCommandVisibleInColorPickerUC =new Command(arg =>
             {
-                VisibleColorPicker = (VisibleColorPicker == "Collapsed") ? "Visible" : "Collapsed";
-                //ShowLayers.SelectedLayer;
+                /*
+                //VisibleColorPicker = (VisibleColorPicker == "Collapsed") ? "Visible" : "Collapsed";
+                VisibleColorPicker = (selectLayer != ShowLayers.SelectedLayer.NameLayer) ? "Visible" : "Collapsed";
+                selectLayer = ShowLayers.SelectedLayer.ColorLayer;
+
+                ColorPicker.ColorHex = ShowLayers.SelectedLayer.ColorLayer;
+                if (VisibleColorPicker == "Collapsed")
+                {
+                    selectLayer = null;
+                }*/
+
+                if (VisibleColorPicker == "Collapsed")
+                {
+                    VisibleColorPicker = "Visible";
+                    ColorPicker.ColorHex = ShowLayers.SelectedLayer.ColorLayer;
+                    selectLayer = ShowLayers.SelectedLayer.NameLayer;
+                }
+                else if (selectLayer != ShowLayers.SelectedLayer.NameLayer)
+                {
+                    ColorPicker.ColorHex = ShowLayers.SelectedLayer.ColorLayer;
+                    selectLayer = ShowLayers.SelectedLayer.NameLayer;
+                }
+                else
+                {
+                    VisibleColorPicker = "Collapsed";
+                    selectLayer = null;
+                }
+                
+
+            });
+
+            ClickCommandСhange = new Command(arg =>
+            {
+
             });
         }
         
@@ -42,5 +75,9 @@ namespace Plagin_AutoCad.ViewModel
         }
 
         public ICommand ClickCommandVisibleInColorPickerUC { get; set; }
+
+
+        public ICommand ClickCommandСhange { get; set; }
+
     }
 }
