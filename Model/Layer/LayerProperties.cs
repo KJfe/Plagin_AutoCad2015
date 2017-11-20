@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
+using Model.Colour;
 using autoDSK = Autodesk.AutoCAD.ApplicationServices.Application;
 using Color = Autodesk.AutoCAD.Colors.Color;
 
@@ -68,7 +69,7 @@ namespace Model.Layer
         public Layer AddLayer()
         {
             Layer layer=new Layer();
-            Color color_White = Color.FromRgb(255, 255, 255);
+            Color colorWhite = Color.FromRgb(255, 255, 255);
             //получаем текущий документ и его БД
             Document acDoc = autoDSK.DocumentManager.MdiActiveDocument;
             Database acCurDb = acDoc.Database;
@@ -87,7 +88,7 @@ namespace Model.Layer
                     
                     acLyrTblRec.Name = NewLayerName(acLyrTbl);
                     acLyrTblRec.IsOff = false;
-                    acLyrTblRec.Color=color_White;
+                    acLyrTblRec.Color=colorWhite;
 
                     // заносим созданный слой в таблицу слоев 
                     acLyrTbl.Add(acLyrTblRec);
@@ -205,9 +206,13 @@ namespace Model.Layer
         /// </summary>
         /// <param name="nameLayer"></param>
         /// <param name="colorLayer"></param>
-        public bool ChangeLayerColor(string nameLayer, Color colorLayer)
+        public bool ChangeLayerColor(string nameLayer, string colorLayer)
         {
             bool status = false;
+            ColorArgb colorArgb = Converter.ToColorARGB(colorLayer);
+            // colorArgb = Converter.ToColorARGB(colorLayer);
+            Color newColorLayer = Color.FromRgb(colorArgb.R, colorArgb.G, colorArgb.B);
+
             //Получение тек. документа и БД
             Document acDoc = autoDSK.DocumentManager.MdiActiveDocument;
             Database acCurDb = acDoc.Database;
@@ -224,7 +229,7 @@ namespace Model.Layer
                     if (CheckLayersName(nameLayer))
                     {
                         LayerTableRecord layer = (LayerTableRecord)tr.GetObject(acLyrTbl[nameLayer], OpenMode.ForWrite);
-                        layer.Color = colorLayer;
+                        layer.Color = newColorLayer;
                         status = true;
                     }
                     tr.Commit();

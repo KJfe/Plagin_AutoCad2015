@@ -8,13 +8,19 @@ namespace Plagin_AutoCad.ViewModel
         #region variables
         private ColorArgb _colorArgb;
         private string _colorHex;
+        private string _selectedColor;
         #endregion
 
         public ColorPickerViewModel()
         {
-            ClickCommandСhange = new Command(arg =>
+            ClickCommandSelectedColor = new Command(arg =>
             {
-                
+                SelectedColor = ColorHex;
+            });
+
+            ClickCommandNotSelectedColor = new Command(arg =>
+            {
+                SelectedColor = null;
             });
         }
 
@@ -58,7 +64,14 @@ namespace Plagin_AutoCad.ViewModel
             }
         }
 
-        public ICommand ClickCommandСhange { get; set; }
+        public string SelectedColor
+        {
+            get { return _selectedColor; }
+            set { _selectedColor = value; OnPropertyChanged(); }
+        }
+
+        public ICommand ClickCommandSelectedColor { get; set; }
+        public ICommand ClickCommandNotSelectedColor { get; set; }
 
     }
 }

@@ -56,6 +56,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="25" />
         </Grid.RowDefinitions>
 
         <!--  Ралинуем столбец для элементов выбора цвета  -->
@@ -169,29 +170,6 @@
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox>
-
-            <!-- В планах сделать палитру стандартных цветов
-
-            <Grid Grid.Row="6" Grid.Column="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-
-                <StackPanel>
-                    <RadioButton GroupName="Color" />
-                </StackPanel>
-            </Grid>
-
-            -->
         </Grid>
 
         <Grid Grid.Row="0" Grid.Column="1">
@@ -226,6 +204,21 @@
                 HorizontalAlignment="Left"
                 Text="{Binding Path=ColorHex, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
         </Grid>
-
+        <Button
+            Grid.Row="2"
+            Grid.Column="1"
+            Width="40"
+            Height="18"
+            Margin="10,0,72,0"
+            Command="{Binding ClickCommandSelectedColor}"
+            Content="Ок" />
+        <Button
+            Grid.Row="2"
+            Grid.Column="1"
+            Width="60"
+            Height="18"
+            Margin="55,3,7,4"
+            Command="{Binding ClickCommandNotSelectedColor}"
+            Content="Отмена" />
     </Grid>
 </UserControl>

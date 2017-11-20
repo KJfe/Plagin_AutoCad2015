@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Autodesk.AutoCAD.Colors;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Autodesk.AutoCAD.DatabaseServices;
 
 namespace Model.Layer
@@ -13,6 +9,20 @@ namespace Model.Layer
     /// </summary>
     public class Layer:LayerProperties
     {
+
+        #region PropertyChangedEventHandler
+        /// <summary>
+        /// Метод проверяющий изменилось ли свойство
+        /// </summary>
+        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
+
         private ObjectId _objectId;
         public ObjectId ObjectId
         {
@@ -66,7 +76,9 @@ namespace Model.Layer
             get { return _colorLayer; }
             set
             {
+                ChangeLayerColor(_nameLayer, value);
                 _colorLayer = value;
+                OnPropertyChanged();
             }
         }
         

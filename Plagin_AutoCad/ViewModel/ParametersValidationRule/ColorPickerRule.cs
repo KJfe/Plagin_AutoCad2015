@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 using System.Windows.Controls;
 
-namespace pl_autocad_2015.ViewModel.ParametersValidationRule
-{ 
+namespace Plagin_AutoCad.ViewModel.ParametersValidationRule
+{
     /// <summary>
     /// Класс для проверки введенных параметров выбора цвета
     /// </summary>
