@@ -1,6 +1,8 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Autodesk.AutoCAD.DatabaseServices;
+using Model.Objects;
 
 namespace Model.Layer
 {
@@ -22,13 +24,6 @@ namespace Model.Layer
 
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
-
-        private ObjectId _objectId;
-        public ObjectId ObjectId
-        {
-            get { return _objectId; }
-            set { _objectId = value; }
-        }
 
         private string _nameLayer;
         /// <summary>
@@ -81,6 +76,14 @@ namespace Model.Layer
                 OnPropertyChanged();
             }
         }
-        
+
+        private ObservableCollection<IObject> _opjectsCollection;
+
+        public ObservableCollection<IObject> ObjectsCollection
+        {
+            get { return _opjectsCollection; }
+            set { _opjectsCollection = value; }
+        }
+
     }
 }

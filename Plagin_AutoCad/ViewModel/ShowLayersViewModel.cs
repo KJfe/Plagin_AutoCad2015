@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Model.Layer;
+using Model.Objects;
 
 namespace Plagin_AutoCad.ViewModel
 {
@@ -10,6 +11,7 @@ namespace Plagin_AutoCad.ViewModel
 
         private ObservableCollection<Layer> _layersCollection;
         private Layer _selectedLayer;
+        private IObject _selectedObjectInLayer;
         private bool _isEnabledColorPicker;
         private string _visibilityColorPicker;
 
@@ -21,7 +23,8 @@ namespace Plagin_AutoCad.ViewModel
             LayerProperties layerProperties = new LayerProperties();
             //получаем коллекицю слоев
             _layersCollection = layerProperties.ReadLayer();
-
+            layerProperties.ReadBloackTable(_layersCollection);
+            
             //Обработчик нажатия кнопки на добавления нового слоя
             ClickCommandAddLayer = new Command(arg => { _layersCollection.Add(layerProperties.AddLayer()); });
             //Обработчик нажатия кнопки на удаление выбранного слоя
@@ -51,7 +54,16 @@ namespace Plagin_AutoCad.ViewModel
             get { return _selectedLayer; }
             set { _selectedLayer = value; OnPropertyChanged(); }
         }
-        
+
+        /// <summary>
+        /// Свойство выбранного объекта
+        /// </summary>
+        public IObject SelectedObjectInLayer
+        {
+            get { return _selectedObjectInLayer; }
+            set { _selectedObjectInLayer = value; OnPropertyChanged(); }
+        }
+
         /// <summary>
         /// Свойсто добавления слоя
         /// </summary>

@@ -8,6 +8,7 @@ namespace Plagin_AutoCad.ViewModel
         #region variables
         private ShowLayersViewModel _showLayers;
         private ColorPickerViewModel _colorPicker;
+        private BlockTableViewModel _blockTable;
         private string _visibleColorPicker;
         #endregion
 
@@ -15,37 +16,18 @@ namespace Plagin_AutoCad.ViewModel
         {
             ColorPicker = new ColorPickerViewModel();
             ShowLayers = new ShowLayersViewModel();
+            BlockTable = new BlockTableViewModel();
 
             VisibleColorPicker = "Collapsed";
-            //string selectLayer=null;
+
+            ShowLayers.PropertyChanged += OnShowLayersPropertyChanged;
+
             ClickCommandVisibleInColorPickerUC =new Command(arg =>
             {
-
-                ShowLayers.PropertyChanged += OnShowLayersPropertyChanged;
+                //ShowLayers.PropertyChanged += OnShowLayersPropertyChanged;
                 ColorPicker.PropertyChanged += OnColorPickerPropertyChanged;
                 VisibleColorPicker = "Visible";
                 ColorPicker.ColorHex = ShowLayers.SelectedLayer.ColorLayer;
-
-                //VisibleColorPicker = (VisibleColorPicker == "Collapsed") ? "Visible" : "Collapsed";
-                
-                //для обработки если выбрана другая строка
-                /* 
-                if (VisibleColorPicker == "Collapsed")
-                {
-                    VisibleColorPicker = "Visible";
-                    ColorPicker.ColorHex = ShowLayers.SelectedLayer.ColorLayer;
-                    selectLayer = ShowLayers.SelectedLayer.NameLayer;
-                }
-                else if (selectLayer != ShowLayers.SelectedLayer.NameLayer)
-                {
-                    ColorPicker.ColorHex = ShowLayers.SelectedLayer.ColorLayer;
-                    selectLayer = ShowLayers.SelectedLayer.NameLayer;
-                }
-                else
-                {
-                    VisibleColorPicker = "Collapsed";
-                    selectLayer = null;
-                }*/
             });
         }
 
@@ -59,6 +41,7 @@ namespace Plagin_AutoCad.ViewModel
             if (e.PropertyName == nameof(ShowLayersViewModel.SelectedLayer))
             {
                 ColorPicker.ColorHex = ShowLayers.SelectedLayer.ColorLayer;
+                BlockTable.Objects = ShowLayers.SelectedLayer.ObjectsCollection;
             }
         }
         /// <summary>
@@ -74,7 +57,7 @@ namespace Plagin_AutoCad.ViewModel
                 {
                     ShowLayers.SelectedLayer.ColorLayer = ColorPicker.SelectedColor;
                 }
-                ShowLayers.PropertyChanged -= OnShowLayersPropertyChanged;
+                //ShowLayers.PropertyChanged -= OnShowLayersPropertyChanged;
                 ColorPicker.PropertyChanged -= OnColorPickerPropertyChanged;
                 VisibleColorPicker = "Collapsed";
             }
@@ -95,6 +78,15 @@ namespace Plagin_AutoCad.ViewModel
             get { return _colorPicker; }
             set { _colorPicker = value; OnPropertyChanged(); }
         }
+        /// <summary>
+        /// Инииализаия передачи экзмепляра класса ViewModel'и отображения обектов чертежа
+        /// </summary>
+        public BlockTableViewModel BlockTable
+        {
+            get { return _blockTable; }
+            set { _blockTable = value; OnPropertyChanged(); }
+        }
+
         /// <summary>
         /// Инициализация видимости слоя
         /// </summary>

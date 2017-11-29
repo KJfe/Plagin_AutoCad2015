@@ -55,9 +55,15 @@
   <ItemGroup>
     <Compile Include="Colour\ColorArgb.cs" />
     <Compile Include="Colour\Converter.cs" />
+    <Compile Include="Layer\BlockTableLayer.cs" />
     <Compile Include="Layer\ChoiceOfInteractionWithLayer.cs" />
     <Compile Include="Layer\Layer.cs" />
     <Compile Include="Layer\LayerProperties.cs" />
+    <Compile Include="Layer\ChoiceObject.cs" />
+    <Compile Include="Objects\CircleElement.cs" />
+    <Compile Include="Objects\IObject.cs" />
+    <Compile Include="Objects\LineElement.cs" />
+    <Compile Include="Objects\PointElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

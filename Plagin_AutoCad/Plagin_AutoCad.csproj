@@ -74,6 +74,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="StartGUI.cs" />
+    <Compile Include="ViewModel\BlockTableViewModel.cs" />
     <Compile Include="ViewModel\ParametersValidationRule\ColorPickerRule.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\ColorPickerViewModel.cs" />
@@ -84,9 +85,13 @@
     <Compile Include="View\MainGUI.xaml.cs">
       <DependentUpon>MainGUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UcerControls\BlockTable.xaml.cs">
+      <DependentUpon>BlockTable.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UcerControls\ColorPicker.xaml.cs">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UcerControls\ShowDataGridToVisibilityConverter.cs" />
     <Compile Include="View\UcerControls\ShowLayers.xaml.cs">
       <DependentUpon>ShowLayers.xaml</DependentUpon>
     </Compile>
@@ -101,6 +106,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="View\MainGUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UcerControls\BlockTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
