@@ -5,11 +5,54 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Plagin_AutoCad.View.UcerControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="220"
-    d:DesignWidth="300"
+    xmlns:objects="clr-namespace:Model.Objects;assembly=Model"
+    xmlns:objectsUC="clr-namespace:Plagin_AutoCad.View.UcerControls.Objects"
+    d:DesignHeight="100"
+    d:DesignWidth="150"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <local:ShowDataGridToVisibilityConverter x:Key="ShowDataGridToVisibilityConverter" />
+        <local:SelectedObjectBindingExtension x:Key="SelectedObjectBindingExtension" />
+    </UserControl.Resources>
     <Grid>
-        
+        <DockPanel DockPanel.Dock="Left">
+            <Border
+                Height="13"
+                BorderThickness="1"
+                DockPanel.Dock="Top">
+                <ToggleButton x:Name="VisibleObjects" Background="DarkGray" />
+            </Border>
+            <Border DockPanel.Dock="Left">
+                <ListBox
+                    x:Name="ObjListBox"
+                    ItemsSource="{Binding Path=ObjectsCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    SelectedItem="{Binding Path=DataContext.SelectedObjectInLayer, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGrid}}}"
+                    Visibility="{Binding ElementName=VisibleObjects, Path=IsChecked, Converter={StaticResource ShowDataGridToVisibilityConverter}}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding NameObject}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Border>
+
+            <Border DockPanel.Dock="Right">
+                <ItemsControl ItemsSource="{Binding ElementName=ObjListBox, Path=SelectedItem, Converter={StaticResource SelectedObjectBindingExtension}}">
+                    <ItemsControl.Resources>
+                        <DataTemplate DataType="{x:Type objects:CircleElement}">
+                            <objectsUC:CircleUC />
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type objects:LineElement}">
+                            <objectsUC:LineUC />
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type objects:PointElement}">
+                            <objectsUC:PointUC />
+                        </DataTemplate>
+                    </ItemsControl.Resources>
+                </ItemsControl>
+            </Border>
+
+        </DockPanel>
     </Grid>
 
 </UserControl>

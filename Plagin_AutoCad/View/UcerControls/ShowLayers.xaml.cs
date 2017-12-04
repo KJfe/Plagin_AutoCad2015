@@ -11,5 +11,7 @@ namespace Plagin_AutoCad.View.UcerControls
         {
             InitializeComponent();
         }
+
+
     }
 }

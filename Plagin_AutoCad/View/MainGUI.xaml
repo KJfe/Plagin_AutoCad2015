@@ -34,8 +34,5 @@
             Grid.Row="2"
             DataContext="{Binding ColorPicker}"
             Visibility="{local:ParentWindowBinding DataContext.VisibleColorPicker}" />
-        <!--
-        <userControls:BlockTable Grid.Row="2" DataContext="{Binding BlockTable}" />
-        -->
     </Grid>
 </Window>

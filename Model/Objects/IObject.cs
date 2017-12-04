@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Model.Objects
+﻿namespace Model.Objects
 {
     /// <summary>
     /// Интерфес объектов слоя

@@ -8,7 +8,6 @@ namespace Plagin_AutoCad.ViewModel
         #region variables
         private ShowLayersViewModel _showLayers;
         private ColorPickerViewModel _colorPicker;
-        private BlockTableViewModel _blockTable;
         private string _visibleColorPicker;
         #endregion
 
@@ -16,7 +15,7 @@ namespace Plagin_AutoCad.ViewModel
         {
             ColorPicker = new ColorPickerViewModel();
             ShowLayers = new ShowLayersViewModel();
-            BlockTable = new BlockTableViewModel();
+            //BlockTable = new BlockTableViewModel();
 
             VisibleColorPicker = "Collapsed";
 
@@ -41,7 +40,7 @@ namespace Plagin_AutoCad.ViewModel
             if (e.PropertyName == nameof(ShowLayersViewModel.SelectedLayer))
             {
                 ColorPicker.ColorHex = ShowLayers.SelectedLayer.ColorLayer;
-                BlockTable.Objects = ShowLayers.SelectedLayer.ObjectsCollection;
+                //BlockTable.Objects = ShowLayers.SelectedLayer.ObjectsCollection;
             }
         }
         /// <summary>
@@ -78,15 +77,6 @@ namespace Plagin_AutoCad.ViewModel
             get { return _colorPicker; }
             set { _colorPicker = value; OnPropertyChanged(); }
         }
-        /// <summary>
-        /// Инииализаия передачи экзмепляра класса ViewModel'и отображения обектов чертежа
-        /// </summary>
-        public BlockTableViewModel BlockTable
-        {
-            get { return _blockTable; }
-            set { _blockTable = value; OnPropertyChanged(); }
-        }
-
         /// <summary>
         /// Инициализация видимости слоя
         /// </summary>

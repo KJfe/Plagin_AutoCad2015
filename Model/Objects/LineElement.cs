@@ -9,8 +9,20 @@ namespace Model.Objects
 
         public LineElement(PointElement startPosition, PointElement endPosition)
         {
-            _startPosition = startPosition;
-            _endPosition = endPosition;
+            StartPosition = startPosition;
+            EndPosition = endPosition;
+        }
+
+        public PointElement StartPosition
+        {
+            get { return _startPosition; }
+            set { _startPosition = value; }
+        }
+
+        public PointElement EndPosition
+        {
+            get { return _endPosition; }
+            set { _endPosition = value; }
         }
         /// <summary>
         /// Реализация отображения наименование типа объекта

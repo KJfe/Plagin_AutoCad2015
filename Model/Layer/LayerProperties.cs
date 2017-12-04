@@ -436,5 +436,14 @@ namespace Model.Layer
             IObject obj = new CircleElement(new PointElement(circle.StartPoint), circle.Radius);
             return obj;
         }
+
+        public bool ChangeColorObject(IObject obj)
+        {
+            Type type = obj.GetType();
+            //typeof(IObject).IsAssignableFrom(obj.GetType());
+             
+            //LineElement gg = (LineElement) obj;
+            return true;
+        }
     }
 }

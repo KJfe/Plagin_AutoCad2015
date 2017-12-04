@@ -82,7 +82,7 @@ namespace Model.Layer
         public ObservableCollection<IObject> ObjectsCollection
         {
             get { return _opjectsCollection; }
-            set { _opjectsCollection = value; }
+            set { _opjectsCollection = value; OnPropertyChanged(); }
         }
 
     }

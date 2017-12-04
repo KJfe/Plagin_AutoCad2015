@@ -101,51 +101,7 @@
             </DataGrid.Columns>
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
-                    <DataTemplate.Resources>
-                        <local:ShowDataGridToVisibilityConverter x:Key="ShowDataGridToVisibilityConverter" />
-                    </DataTemplate.Resources>
-                    <DockPanel DockPanel.Dock="Left">
-                        <Border
-                            Height="13"
-                            BorderThickness="1"
-                            DockPanel.Dock="Top">
-                            <ToggleButton x:Name="VisibleObjects" Background="DarkGray" />
-                        </Border>
-                        <Border DockPanel.Dock="Left">
-                            <DataGrid
-                                x:Name="Objects"
-                                Height="Auto"
-                                AutoGenerateColumns="False"
-                                CanUserAddRows="False"
-                                CanUserDeleteRows="False"
-                                CanUserResizeRows="False"
-                                ColumnWidth="100"
-                                GridLinesVisibility="None"
-                                HeadersVisibility="Column"
-                                ItemsSource="{Binding Path=ObjectsCollection, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                                SelectedIndex="{Binding SelectedObjectInLayer}"
-                                Visibility="{Binding ElementName=VisibleObjects, Path=IsChecked, Converter={StaticResource ShowDataGridToVisibilityConverter}}">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Binding="{Binding NameObject}" Header="Имя объекта" />
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </Border>
-                        <Border DockPanel.Dock="Right">
-                            <ListBox
-                                ItemsSource="{Binding Path=ObjectsCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                SelectedItem="{Binding SelectedObjectInLayer}"
-                                Visibility="{Binding ElementName=VisibleObjects, Path=IsChecked, Converter={StaticResource ShowDataGridToVisibilityConverter}}">
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding NameObject}" />
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
-                        </Border>
-                        <Border DockPanel.Dock="Right">
-                            <local:BlockTable />
-                        </Border>
-                    </DockPanel>
+                    <local:BlockTable />
                 </DataTemplate>
             </DataGrid.RowDetailsTemplate>
         </DataGrid>

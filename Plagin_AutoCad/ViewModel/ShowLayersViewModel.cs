@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows.Input;
 using Model.Layer;
 using Model.Objects;
@@ -12,19 +13,21 @@ namespace Plagin_AutoCad.ViewModel
         private ObservableCollection<Layer> _layersCollection;
         private Layer _selectedLayer;
         private IObject _selectedObjectInLayer;
-        private bool _isEnabledColorPicker;
-        private string _visibilityColorPicker;
-
+        private BlockTableViewModel _blockTable;
+        
         #endregion
 
         public ShowLayersViewModel()
         {
+            
             //экзмепляр объекта свойств слоев 
             LayerProperties layerProperties = new LayerProperties();
             //получаем коллекицю слоев
             _layersCollection = layerProperties.ReadLayer();
             layerProperties.ReadBloackTable(_layersCollection);
-            
+
+            this.PropertyChanged += ShowLayersViewModel_PropertyChanged;
+
             //Обработчик нажатия кнопки на добавления нового слоя
             ClickCommandAddLayer = new Command(arg => { _layersCollection.Add(layerProperties.AddLayer()); });
             //Обработчик нажатия кнопки на удаление выбранного слоя
@@ -35,8 +38,24 @@ namespace Plagin_AutoCad.ViewModel
                     _layersCollection.Remove(_selectedLayer);
                 } //иначе exeption 
             });
+
+           
         }
 
+        private void ShowLayersViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(this.SelectedLayer))
+            {
+                BlockTable = new BlockTableViewModel{ObjectsCollection = SelectedLayer.ObjectsCollection};
+                //BlockTable.ObjectsCollection = SelectedLayer.ObjectsCollection;
+                //BlockTable.Objects = SelectedLayer.ObjectsCollection;
+            }
+            if (e.PropertyName == nameof(this.SelectedObjectInLayer))
+            {
+                
+            }
+        }
+   
         /// <summary>
         /// Свойство коллекции экзмепляров слоев
         /// </summary>
@@ -64,6 +83,11 @@ namespace Plagin_AutoCad.ViewModel
             set { _selectedObjectInLayer = value; OnPropertyChanged(); }
         }
 
+        public BlockTableViewModel BlockTable
+        {
+            get { return _blockTable; } set { _blockTable = value; OnPropertyChanged(); }
+        }
+        
         /// <summary>
         /// Свойсто добавления слоя
         /// </summary>

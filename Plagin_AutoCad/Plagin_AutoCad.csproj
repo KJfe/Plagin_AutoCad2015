@@ -91,6 +91,16 @@
     <Compile Include="View\UcerControls\ColorPicker.xaml.cs">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UcerControls\Objects\CircleUC.xaml.cs">
+      <DependentUpon>CircleUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UcerControls\Objects\LineUC.xaml.cs">
+      <DependentUpon>LineUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UcerControls\Objects\PointUC.xaml.cs">
+      <DependentUpon>PointUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UcerControls\SelectedObjectBindingExtension.cs" />
     <Compile Include="View\UcerControls\ShowDataGridToVisibilityConverter.cs" />
     <Compile Include="View\UcerControls\ShowLayers.xaml.cs">
       <DependentUpon>ShowLayers.xaml</DependentUpon>
@@ -114,6 +124,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UcerControls\ColorPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UcerControls\Objects\CircleUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UcerControls\Objects\LineUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UcerControls\Objects\PointUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
