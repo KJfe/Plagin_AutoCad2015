@@ -13,6 +13,7 @@
     <UserControl.Resources>
         <local:ShowDataGridToVisibilityConverter x:Key="ShowDataGridToVisibilityConverter" />
         <local:SelectedObjectBindingExtension x:Key="SelectedObjectBindingExtension" />
+        <local:ShowButtonToVisibilityConverter x:Key="ShowButtonToVisibilityConverter" />
     </UserControl.Resources>
     <Grid>
         <DockPanel DockPanel.Dock="Left">
@@ -22,7 +23,7 @@
                 DockPanel.Dock="Top">
                 <ToggleButton x:Name="VisibleObjects" Background="DarkGray" />
             </Border>
-            <Border DockPanel.Dock="Left">
+            <Border Width="100" DockPanel.Dock="Left">
                 <ListBox
                     x:Name="ObjListBox"
                     ItemsSource="{Binding Path=ObjectsCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -37,7 +38,7 @@
             </Border>
 
             <Border DockPanel.Dock="Right">
-                <ItemsControl ItemsSource="{Binding ElementName=ObjListBox, Path=SelectedItem, Converter={StaticResource SelectedObjectBindingExtension}}">
+                <ItemsControl x:Name="ItemsControl" ItemsSource="{Binding ElementName=ObjListBox, Path=SelectedItem, Converter={StaticResource SelectedObjectBindingExtension}}">
                     <ItemsControl.Resources>
                         <DataTemplate DataType="{x:Type objects:CircleElement}">
                             <objectsUC:CircleUC />

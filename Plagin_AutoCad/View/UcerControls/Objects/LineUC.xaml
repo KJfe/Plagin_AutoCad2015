@@ -5,13 +5,28 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Plagin_AutoCad.View.UcerControls.Objects"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="125"
-    d:DesignWidth="300"
+    xmlns:parametersValidationRule="clr-namespace:Plagin_AutoCad.ViewModel.ParametersValidationRule"
+    d:DesignHeight="220"
+    d:DesignWidth="250"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <!--  Вывод сообщения ошибки  -->
+        <ControlTemplate x:Key="ValidationErrorTemplate">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
+                    <Label
+                        Background="Red"
+                        Content="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"
+                        Foreground="White" />
+                </StackPanel>
+                <AdornedElementPlaceholder x:Name="ErrorAdorner" />
+            </DockPanel>
+        </ControlTemplate>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -19,7 +34,9 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Label
             Grid.Row="0"
@@ -31,62 +48,165 @@
         <Label
             Grid.Row="1"
             Grid.Column="0"
-            HorizontalAlignment="Left"
+            HorizontalAlignment="Right"
             VerticalAlignment="Center"
             Content="X" />
-        <Label
+
+        <TextBox
             Grid.Row="1"
             Grid.Column="1"
+            Width="150"
+            Margin="5"
             HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}">
+            <Binding
+                Mode="TwoWay"
+                NotifyOnValidationError="True"
+                Path="StartPosition.X"
+                UpdateSourceTrigger="PropertyChanged">
+                <Binding.ValidationRules>
+                    <parametersValidationRule:VariablesObjectRule />
+                    <ExceptionValidationRule />
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+        <Label
+            Grid.Row="2"
+            Grid.Column="0"
+            HorizontalAlignment="Right"
             VerticalAlignment="Center"
             Content="Y" />
         <TextBox
-            Grid.Row="1"
-            Grid.Column="0"
-            Width="100"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Text="{Binding Path=StartPosition.X, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        <TextBox
-            Grid.Row="1"
-            Grid.Column="1"
-            Width="100"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Text="{Binding Path=StartPosition.Y, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        <Label
             Grid.Row="2"
+            Grid.Column="1"
+            Width="150"
+            Margin="5"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}">
+            <Binding
+                Mode="TwoWay"
+                NotifyOnValidationError="True"
+                Path="StartPosition.Y"
+                UpdateSourceTrigger="PropertyChanged">
+                <Binding.ValidationRules>
+                    <parametersValidationRule:VariablesObjectRule />
+                    <ExceptionValidationRule />
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+
+        <Label
+            Grid.Row="3"
+            Grid.Column="0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Content="Z" />
+        <TextBox
+            Grid.Row="3"
+            Grid.Column="1"
+            Width="150"
+            Margin="5"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}">
+            <Binding
+                Mode="TwoWay"
+                NotifyOnValidationError="True"
+                Path="StartPosition.Z"
+                UpdateSourceTrigger="PropertyChanged">
+                <Binding.ValidationRules>
+                    <parametersValidationRule:VariablesObjectRule />
+                    <ExceptionValidationRule />
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+
+        <Label
+            Grid.Row="4"
             Grid.Column="0"
             Grid.ColumnSpan="2"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Content="Координаты конечной точки линии" />
         <Label
-            Grid.Row="3"
+            Grid.Row="5"
             Grid.Column="0"
-            HorizontalAlignment="Left"
+            HorizontalAlignment="Right"
             VerticalAlignment="Center"
             Content="X" />
-        <Label
-            Grid.Row="3"
+
+        <TextBox
+            Grid.Row="5"
             Grid.Column="1"
+            Width="150"
+            Margin="5"
             HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}">
+            <Binding
+                Mode="TwoWay"
+                NotifyOnValidationError="True"
+                Path="EndPosition.X"
+                UpdateSourceTrigger="PropertyChanged">
+                <Binding.ValidationRules>
+                    <parametersValidationRule:VariablesObjectRule />
+                    <ExceptionValidationRule />
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+        <Label
+            Grid.Row="6"
+            Grid.Column="0"
+            HorizontalAlignment="Right"
             VerticalAlignment="Center"
             Content="Y" />
         <TextBox
-            Grid.Row="3"
-            Grid.Column="0"
-            Width="100"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Text="{Binding Path=EndPosition.X, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        <TextBox
-            Grid.Row="3"
+            Grid.Row="6"
             Grid.Column="1"
-            Width="100"
-            HorizontalAlignment="Center"
+            Width="150"
+            Margin="5"
+            HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Text="{Binding Path=EndPosition.Y, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}">
+            <Binding
+                Mode="TwoWay"
+                NotifyOnValidationError="True"
+                Path="EndPosition.Y"
+                UpdateSourceTrigger="PropertyChanged">
+                <Binding.ValidationRules>
+                    <parametersValidationRule:VariablesObjectRule />
+                    <ExceptionValidationRule />
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+
+        <Label
+            Grid.Row="7"
+            Grid.Column="0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Content="Z" />
+        <TextBox
+            Grid.Row="7"
+            Grid.Column="1"
+            Width="150"
+            Margin="5"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}">
+            <Binding
+                Mode="TwoWay"
+                NotifyOnValidationError="True"
+                Path="EndPosition.Z"
+                UpdateSourceTrigger="PropertyChanged">
+                <Binding.ValidationRules>
+                    <parametersValidationRule:VariablesObjectRule />
+                    <ExceptionValidationRule />
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
 
     </Grid>
 </UserControl>

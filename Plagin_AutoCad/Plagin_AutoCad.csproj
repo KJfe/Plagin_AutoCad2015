@@ -76,6 +76,7 @@
     <Compile Include="StartGUI.cs" />
     <Compile Include="ViewModel\BlockTableViewModel.cs" />
     <Compile Include="ViewModel\ParametersValidationRule\ColorPickerRule.cs" />
+    <Compile Include="ViewModel\ParametersValidationRule\VariablesObjectRule.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\ColorPickerViewModel.cs" />
     <Compile Include="ViewModel\Command.cs" />
@@ -101,6 +102,7 @@
       <DependentUpon>PointUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UcerControls\SelectedObjectBindingExtension.cs" />
+    <Compile Include="View\UcerControls\ShowButtonToVisibilityConverter.cs" />
     <Compile Include="View\UcerControls\ShowDataGridToVisibilityConverter.cs" />
     <Compile Include="View\UcerControls\ShowLayers.xaml.cs">
       <DependentUpon>ShowLayers.xaml</DependentUpon>
